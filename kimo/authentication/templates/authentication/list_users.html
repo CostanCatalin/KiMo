@@ -1,0 +1,25 @@
+{% extends 'templates/base.html' %}
+{% load crispy_forms_tags %}
+{%block title %}Login{% endblock %}
+
+{% block content %}
+{% for user in users %}
+    {{ user.username }}<br />
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if users.has_previous %}
+            <a href="?page={{ users.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ users.number }} of {{ users.paginator.num_pages }}
+        </span>
+
+        {% if users.has_next %}
+            <a href="?page={{ users.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

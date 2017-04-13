@@ -1,0 +1,14 @@
+{% extends 'templates/base.html' %}
+
+{% block content %}
+<ul>
+{% for percent in percentages %}
+    <li>{{ percent.0 }}: {{ percent.1 }}%</a></li>
+{% endfor %}
+</ul>
+<ul>
+{% for month in months %}
+    <li>{{ month.0 }}: {{ month.1 }}</li>
+{% endfor %}
+</ul>
+{% endblock %}

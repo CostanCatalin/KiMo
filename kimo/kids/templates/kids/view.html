@@ -1,0 +1,9 @@
+{% extends 'templates/base.html' %}
+{% load crispy_forms_tags %}
+{%block title %}Login{% endblock %}
+
+{% block content %}
+<h3>{{ kid.full_name }} - <a href="{% url 'edit_kid' kid.pk %}"><span class="label label-default">Edit</span></a><a href="{% url 'delete_kid' kid.pk %}"><span class="label label-danger">Delete</span></a></h3>
+<p>Birth Date: {{ kid.birth_date }}</p>
+<p>Age: {{ age }}</p>
+{% endblock %}

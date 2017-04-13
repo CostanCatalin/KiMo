@@ -1,0 +1,9 @@
+{% extends 'templates/base.html' %}
+
+{% block content %}
+<ul>
+{% for kid in kids %}
+    <li><a href="{% url 'view_kid' kid.pk %}">{{ kid.full_name }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
