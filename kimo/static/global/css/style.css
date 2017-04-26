@@ -1,0 +1,70 @@
+body {
+    font-size: normal;
+    background: url('../img/background.jpeg') center center no-repeat fixed;
+    background-size: cover;
+    font-family: 'Open Sans', helvetica, sans-serif;
+}
+.auth-forms {
+    width: 40%;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    animation: form-animation 1s;
+}
+
+.form-header {
+    margin: 100px auto 15px auto;
+    color: #5cb85c;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-header img {
+    height: 150px;
+}
+label {
+    font-size: 1.2em;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    opacity: 0.5;
+    font-weight: bold;
+    color: #5cb85c;
+    border-left: 5px solid white;
+    transition: 0.3s all;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+ input[type="email"]:focus {
+    opacity: 1;
+    border-left: 5px solid #5cb85c;
+}
+
+@keyframes form-animation{
+    0% {
+        margin-top: 50px;
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0;
+        opacity: 1;
+    }
+}
+
+.profile {
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    padding: 0.5% 2%;
+    height: 1500px;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+#map {
+    height: 600px;
+}

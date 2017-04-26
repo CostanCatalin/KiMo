@@ -1,0 +1,47 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kimo - {% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'global/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet">
+
+</head>
+<body>
+    <script src="{% static 'global/js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'global/js/bootstrap.js' %}"></script>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#kimo-navigation" aria-expanded="false">
+                    <span class="sr-only">Menu</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">KiMo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="kimo-navigation">
+                <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
+                <li><a href="{% url 'list_kids' %}">My Kids</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in">&nbsp;</span>Logout - {{ user.username }}</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Login</a></li>
+                {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+    {% block content %}
+
+    {% endblock %}
+    </div>
+</body>
+</html>

@@ -25,18 +25,21 @@ SECRET_KEY = 'itaw3uue#!_aut=cbrld8z3tfj^i8j4_fp1qq!qc8dc#+d!w&7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'authentication',
+    'kids',
 ]
 
 MIDDLEWARE = [
@@ -52,10 +55,11 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'kimo.urls'
 os.environ['ORACLE_HOME'] = r'C:\oraclestuff\instantclient_11_2'
 os.environ['PATH'] = r'C:\oraclestuff\instantclient_11_2;%PATH%'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,7 +89,9 @@ DATABASES = {
     }
 }
 
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
@@ -123,3 +129,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+AUTH_USER_MODEL = 'authentication.Account'
+LOGIN_URL = '/account/login/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+print(STATIC_ROOT)
+# CRISPY_TEMPLATE_PACK = 'uni_form'

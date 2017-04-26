@@ -3,5 +3,27 @@
 {%block title %}Login{% endblock %}
 
 {% block content %}
+<div class="profile">
+    <div id="map"></div>
 
+</div>
+<script>
+  var map;
+  function initMap() {
+    var myLatLng = {lat: 47.1739724, lng: 27.5749111};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 18,
+      center: myLatLng
+    });
+
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'My Location!'
+    });
+  };
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9sVt_9-coQ5PNimOKNg4332NTZVaBEFI&callback=initMap"
+async defer></script>
 {% endblock %}

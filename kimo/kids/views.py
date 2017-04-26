@@ -5,17 +5,20 @@ from .models import Kids
 from .forms import RegisterKidForm
 
 
-@login_required()
+# @login_required()
 def list_kids(request):
+    """
     kids_query = Kids.objects.of_user(request.user.pk)
     context = {
         'kids': kids_query
     }
+    """
     return render(request, 'kids/list_kids.html', context)
 
 
-@login_required()
+# @login_required()
 def register_kid(request):
+    """
     form = RegisterKidForm(request.POST or None)
 
     if form.is_valid():
@@ -24,11 +27,13 @@ def register_kid(request):
         kid.last_name = request.user.last_name
         kid.save()
         return redirect('/kids/list')
-
+    """
     return render(request, 'kids/form.html', {'form': form})
 
 
+# @login_required()
 def edit_kid(request, kid_id):
+    """
     if request.method == 'POST':
         kid_qr = get_object_or_404(Kids, pk=kid_id)
         form = RegisterKidForm(request.POST, instance=kid_qr)
@@ -41,26 +46,31 @@ def edit_kid(request, kid_id):
     else:
         kid = get_object_or_404(Kids, pk=kid_id)
         form = RegisterKidForm(instance=kid)
-
+    """
     return render(request, 'kids/form.html', {'form': form})
 
 
-@login_required()
+# @login_required()
 def view_kid(request, kid_id):
+    """
     kid_qr = get_object_or_404(Kids, pk=kid_id)
     if kid_qr.parent != request.user:
         return HttpResponseForbidden()
+    """
     return render(request, 'kids/view.html', {'kid': kid_qr, 'age': kid_qr.get_age()})
 
 
-@login_required()
+# @login_required()
 def delete_kid(request, kid_id):
+    """
     kid_qr = get_object_or_404(Kids, pk=kid_id)
     if kid_qr.parent != request.user:
         return HttpResponseForbidden()
     kid_qr.delete()
+    """
     return redirect('/kids/list')
 
+"""
 def list_stats(request):
     percentages = []
     months = []
@@ -72,3 +82,4 @@ def list_stats(request):
         months.append((i, Kids.objects.registered_in_month(i)))
 
     return render(request, 'kids/stats.html', {'percentages': percentages, 'months': months})
+"""
