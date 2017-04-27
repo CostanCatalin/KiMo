@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
     'authentication',
     'kids',
 ]
@@ -80,7 +79,7 @@ WSGI_APPLICATION = 'kimo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.oracle',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'xe',
         'USER': 'project_admin',
         'PASSWORD': 'root',
