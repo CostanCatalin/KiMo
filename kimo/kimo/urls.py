@@ -17,9 +17,11 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
+from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^account/', include('authentication.urls')),
-    url(r'^kids/', include('kids.urls'))
+    url(r'^kids/', include('kids.urls')),
+    url(r'^about$', views.about, name='about')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

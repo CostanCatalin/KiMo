@@ -25,8 +25,8 @@
             </div>
             <div class="collapse navbar-collapse" id="kimo-navigation">
                 <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
-                <li><a href="{% url 'list_kids' %}">My Kids</a></li>
+                <li class="active"><a href="{% url 'about' %}">About<span class="sr-only">(current)</span></a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -36,24 +36,24 @@
                         <ul class="dropdown-menu" id="notifications">
                             <li class="notification-header"> Notifications </li>
                             <li>
-                            <span class="clear block m-b-none"><i class="glyphicon glyphicon-exclamation-sign"></i>
+                            <span><i class="glyphicon glyphicon-exclamation-sign"></i>
                                 Amethyst out of range<br><small>1 hour ago</small>
                             </span>
                             </li>
                             <li>
-                            <span class="clear block m-b-none"><i class="glyphicon glyphicon-exclamation-sign"></i>
+                            <span><i class="glyphicon glyphicon-exclamation-sign"></i>
                                 Amber out of range<br><small>2 hours ago</small>
                             </span>
                             </li>
                             <li>
-                            <span class=""><i class="glyphicon glyphicon-exclamation-sign"></i>
+                            <span><i class="glyphicon glyphicon-exclamation-sign"></i>
                                 Crystal out of range<br><small>4 hours ago</small>
                             </span>
                             </li>
                         </ul>
 
                     </li>
-                {% if ! user.is_authenticated %}
+                {% if not user.is_authenticated %}
                 <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in">&nbsp;</span>Logout - {{ user.username }}</a></li>
                 {% else %}
                 <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Login</a></li>

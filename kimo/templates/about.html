@@ -1,0 +1,30 @@
+{% extends 'templates/base.html' %}
+{% load static %}
+{%block title %}Login{% endblock %}
+
+{% block content %}
+<div class="about">
+    <h1>About us</h1>
+
+    <p>We are a group of students from the Faculty of Computer Science of Iasi</p>
+    <p>We want a safer world for children, so we made this</p>
+
+    <h2>Team</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{% static 'global/img/vlad_benchea.jpeg' %}">
+            <p>Vlad Benchea</p>
+        </div>
+
+        <div class="col-md-4">
+            <img src="{% static 'global/img/catalin_costan.jpeg' %}">
+            <p>Catalin Costan</p>
+        </div>
+
+        <div class="col-md-4">
+            <img src="{% static 'global/img/alexandru_postolache.jpeg' %}">
+            <p>Alexandru Postolache</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
