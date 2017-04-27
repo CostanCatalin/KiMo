@@ -1,9 +1,45 @@
 {% extends 'templates/base.html' %}
-{% load crispy_forms_tags %}
+{% load static %}
 {%block title %}Login{% endblock %}
 
 {% block content %}
-<h3>{{ kid.full_name }} - <a href="{% url 'edit_kid' kid.pk %}"><span class="label label-default">Edit</span></a><a href="{% url 'delete_kid' kid.pk %}"><span class="label label-danger">Delete</span></a></h3>
-<p>Birth Date: {{ kid.birth_date }}</p>
-<p>Age: {{ age }}</p>
+<div class="profile">
+    <div class="row">
+        <img class="col-xs-6 profile-picture" src="{% static 'global/img/baby_picture.jpeg' %}" alt="profile picture">
+
+        <div class="col-xs-6">
+            <div class="user-details">
+                <h1>Amber Usernamovski</h1>
+                <p><span class="glyphicon glyphicon-calendar"></span> 1 May 2015 <small>(2 years old)</small></p>
+                  <p><span class="glyphicon glyphicon-map-marker"></span> 189 Logan St.Crystal Lake, IL 60014</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="map"></div>
+        </div>
+    </div>
+
+
+<script>
+  var map;
+  function initMap() {
+    var myLatLng = {lat: 42.2335399, lng: -88.33784799999999};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 18,
+      center: myLatLng
+    });
+
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: "Amber's Here!"
+    });
+  };
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9sVt_9-coQ5PNimOKNg4332NTZVaBEFI&callback=initMap"
+async defer></script>
+</div>
 {% endblock %}
