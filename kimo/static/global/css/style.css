@@ -13,7 +13,7 @@ body {
     margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 15px;
-    animation: form-animation 1s;
+    animation: fade-animation 1s;
 }
 
 .form-header {
@@ -50,7 +50,7 @@ input[type="password"]:focus,
     border-left: 5px solid #5cb85c;
 }
 
-@keyframes form-animation{
+@keyframes fade-animation{
     0% {
         margin-top: 50px;
         opacity: 0;
@@ -77,8 +77,8 @@ input[type="password"]:focus,
 .navbar {
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
+    left: -3px;
+    right: -3px;
     z-index: 100;
 }
 
@@ -161,9 +161,60 @@ body {
 cursor: pointer;
 }
 
+.glyphicon-trash {
+    color: #d75b32;
+}
 
 #accordion {
     margin-top: 70px;
+}
+
+.notification-circle {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background-color: #d75b32;
+    color: white;
+    display: block;
+    text-align: center;
+    font-size: 0.8em;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    font-weight: bold;
+}
+
+a.navbar-brand {
+padding: 10px;
+}
+
+#notifications {
+    padding: 0;
+    width: 250px;
+    animation: fade-animation 1s;
+}
+
+#notifications li{
+    padding: 15px 10px;
+}
+
+#notifications li .glyphicon{
+    color: #d75b32;
+}
+
+small {
+    margin-left: 25px;
+}
+
+a.dropdown-toggle {
+    font-size: 14px;
+    height: 50px;
+}
+
+.notification-header {
+    background-color: #f6f8f8;
+    font-weight: bold;
+    color: #aaa;
 }
 
 
