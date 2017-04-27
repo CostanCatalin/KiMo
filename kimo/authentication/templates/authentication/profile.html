@@ -97,7 +97,33 @@
     </div>
   </div>
 </div>
-
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal_add_kid">
+  Add a new child
+</button>
 </div>
+
+{% include 'templates/modal/modal_head.html' with modal_id="modal_add_kid" modal_label="modal_add_kid_label" modal_title="Add Kid" %}
+<form method="POST" action="{% url 'profile' %}">
+    <div class="input-group input-group-lg">
+        <label for="id_first_name">First name: </label>
+        <input type="text" class="form-control" placeholder="First name" aria-describedby="sizing-addon1" name="first_name" id="id_first_name">
+    </div>
+    <div class="input-group input-group-lg">
+        <label for="id_birth_date">Birthdate: </label>
+        <input type="date" class="form-control" aria-describedby="sizing-addon1" name="birth_date" id="id_birth_date">
+    </div>
+    <div class="form-group">
+        <p>Choose a profile picture</p>
+        <label class="btn btn-default btn-file" id="exception">
+            Choose Picture <input type="file" id="child_picture" style="display: none;">
+        </label>
+    </div>
+
+    {% include 'templates/modal/modal_footer.html' %}
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+    <button type="button" class="btn btn-success">Add kid</button>
+</form>
+{% include 'templates/modal/modal_end.html' %}
 
 {% endblock %}
