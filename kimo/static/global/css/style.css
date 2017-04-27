@@ -1,9 +1,13 @@
 body {
     font-size: normal;
-    background: url('../img/background.jpeg') center center no-repeat fixed;
-    background-size: cover;
     font-family: 'Open Sans', helvetica, sans-serif;
 }
+
+.forms-body {
+    background: url('../img/background.jpeg') center center no-repeat fixed;
+    background-size: cover;
+}
+
 .auth-forms {
     width: 40%;
     margin: 0 auto;
@@ -58,10 +62,8 @@ input[type="password"]:focus,
 }
 
 .profile {
-    background-color: rgba(255, 255, 255, 0.5);
     margin: 0;
     padding: 0.5% 2%;
-    height: 1500px;
 }
 
 .navbar {
@@ -72,6 +74,13 @@ input[type="password"]:focus,
     height: 600px;
 }
 
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
 
 
 nav li a {
@@ -108,5 +117,54 @@ nav li a.active:after {
 .navbar-brand img {
     height: 100%;
 }
+
+body {
+  background: white;
+  background: -webkit-radial-gradient(#ccc, white);
+  background: -o-radial-gradient(#ccc, white);
+  background: -moz-radial-gradient(#ccc, white);
+  background: radial-gradient(#ccc, white);
+}
+
+.profile-picture,
+.panel-body img {
+    height: 200px;
+    width: auto;
+    padding: 0;
+    display: block;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.25);
+}
+
+.profile {
+    margin-top: 100px;
+}
+
+.profile h1 {
+    margin: 25px 0;
+    color: #5cb85c;
+}
+
+
+.glyphicon {
+    color: #5cb85c;
+    margin-right: 5px;
+}
+
+.glyphicon-eye-open {
+    margin-right: 15px;
+}
+
+.glyphicon-eye-open,
+.glyphicon-trash {
+cursor: pointer;
+}
+
+
+#accordion {
+    margin-top: 70px;
+}
+
 
 

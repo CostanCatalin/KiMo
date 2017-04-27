@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet">
 
 </head>
-<body>
+<body {% block body_extra %} {% endblock %}>
     <script src="{% static 'global/js/jquery-3.2.1.js' %}"></script>
     <script src="{% static 'global/js/bootstrap.js' %}"></script>
     <nav class="navbar navbar-inverse">
@@ -43,5 +43,6 @@
 
     {% endblock %}
     </div>
+    <script src="{% static 'global/js/main.js' %}"></script>
 </body>
 </html>
