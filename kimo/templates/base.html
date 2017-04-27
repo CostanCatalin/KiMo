@@ -53,10 +53,10 @@
                         </ul>
 
                     </li>
-                {% if user.is_authenticated %}
+                {% if ! user.is_authenticated %}
                 <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in">&nbsp;</span>Logout - {{ user.username }}</a></li>
                 {% else %}
-                <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-out">&nbsp;</span>LogOut</a></li>
+                <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Login</a></li>
                 {% endif %}
                 </ul>
             </div>
