@@ -96,16 +96,6 @@ input[type="date"]:focus {
     z-index: 100;
 }
 
-
-nav li a {
-    text-decoration: none !important;
-    position: relative;
-    color: black;
-    float: left;
-    margin: 0 10px;
-    padding: 30px 0;
-}
-
 nav li a:hover {
     color: #006F93;
 }
@@ -181,11 +171,29 @@ a.dropdown-toggle .glyphicon {
     color: white;
 }
 
-.notification-header {
+.dropdown-menu li {
+    background-color: white;
+    border-bottom: 1px solid #f6f8f8;
+}
+
+.dropdown-menu li.notification-header {
     background-color: #f6f8f8;
     font-weight: bold;
     color: #aaa;
 }
+
+@media screen and (max-width: 767px) {
+    li {
+        margin: 0 auto;
+        text-align: center
+    }
+
+     #notifications {
+        margin: auto;
+     }
+}
+
+
 
 
 
