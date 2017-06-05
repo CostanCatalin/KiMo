@@ -37,9 +37,24 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authentication',
-    'kids',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'authentication.apps.AuthenticationConfig',
+    'kids.apps.KidsConfig',
+    'api.apps.ApiConfig'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
+    ),
+    'PAGE_SIZE': 10
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,7 +94,7 @@ WSGI_APPLICATION = 'kimo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.oracle',
         'NAME': 'xe',
         'USER': 'project_admin',
         'PASSWORD': 'root',
@@ -131,5 +146,5 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'authentication.Account'
 LOGIN_URL = '/account/login/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
-print(STATIC_ROOT)
 # CRISPY_TEMPLATE_PACK = 'uni_form'
+DEFAULT_CHARSET = 'utf-8'

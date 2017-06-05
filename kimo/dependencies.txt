@@ -1,6 +1,9 @@
 appdirs==1.4.3
-#cx-Oracle==5.3
+cx-Oracle==5.3
 Django==1.10.6
+django-filter==1.0.4
+djangorestframework==3.6.3
+Markdown==2.6.8
 packaging==16.8
 phonenumbers==8.4.0
 pyparsing==2.2.0

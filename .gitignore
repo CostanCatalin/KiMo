@@ -1,4 +1,6 @@
-kimo/.idea
+.idea/
+kimo/.idea/
+kimo/api/__pycache__/
 kimo/authentication/__pycache__/
 kimo/authentication/migrations/__pycache__/
 kimo/dependencies.txt
@@ -6,3 +8,6 @@ kimo/kids/__pycache__/
 kimo/kids/migrations/__pycache__/
 kimo/kimo/__pycache__/
 kimo/xe
+kimo/walk.py
+kimo/api/migrations/__pycache__/
+kimo/*/migrations/00*.py

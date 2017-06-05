@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^$', views.about, name='default'),
     url(r'^admin/', admin.site.urls),
     url(r'^account/', include('authentication.urls')),
+    url(r'^api/', include('api.urls')),
     url(r'^kids/', include('kids.urls')),
     url(r'^about$', views.about, name='about')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
