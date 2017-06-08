@@ -22,8 +22,6 @@ function readCookie(name) {
     return null;
 }
 
-
-
 function getProfile() {
 
 var saveData = $.ajax({

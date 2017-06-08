@@ -12,6 +12,8 @@
 <body {% block body_extra %} {% endblock %}>
     <script src="{% static 'global/js/jquery-3.2.1.js' %}"></script>
     <script src="{% static 'global/js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'global/js/notification.js' %}"></script>
+    <script> getNotifications(); </script>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -31,25 +33,10 @@
                 <ul class="nav navbar-nav navbar-right ">
                     <li>
                           <a class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <div class="glyphicon glyphicon-bell"><span class="notification-circle">3</span> </div>
+                              <div class="glyphicon glyphicon-bell"><p id="notification-circle"></p> </div>
                           </a>
                         <ul class="dropdown-menu" id="notifications">
                             <li class="notification-header"> Notifications </li>
-                            <li>
-                            <span><i class="glyphicon glyphicon-exclamation-sign"></i>
-                                Amethyst out of range<br><small>1 hour ago</small>
-                            </span>
-                            </li>
-                            <li>
-                            <span><i class="glyphicon glyphicon-exclamation-sign"></i>
-                                Amber out of range<br><small>2 hours ago</small>
-                            </span>
-                            </li>
-                            <li>
-                            <span><i class="glyphicon glyphicon-exclamation-sign"></i>
-                                Crystal out of range<br><small>4 hours ago</small>
-                            </span>
-                            </li>
                         </ul>
 
                     </li>
