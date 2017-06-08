@@ -1,10 +1,13 @@
 {% extends 'templates/base.html' %}
 {%block title %}Login{% endblock %}
+{% load static %}
 {% block body_extra %} class="forms-body" {% endblock %}
 {% block content %}
 
+<script type="text/javascript" src="{% static 'global/js/auth.js' %}"></script>
+
 <h2 class="form-header"><img src="/static/global/img/logo.png" alt="Logo"></h2>
-<form action="{% url 'profile' %}" class="auth-forms" method="POST">
+<form class="auth-forms">
     {% csrf_token %}
     <div class="form-group">
         <label for="id_username">Username</label>
@@ -17,7 +20,7 @@
     <div class="row">
         <p class="col-xs-6">Don't have an account? Register <a href="{% url 'register' %}">here</a></p>
         <div class="col-xs-3 col-xs-offset-3">
-            <button type="submit" class="btn btn-success btn">Login</button>
+            <button type="submit" class="btn btn-success btn" id="login-submit" onclick="login()">Login</button>
         </div>
     </div>
 </form>

@@ -67,8 +67,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'kimo.urls'
-os.environ['ORACLE_HOME'] = r'C:\oraclestuff\instantclient_11_2'
-os.environ['PATH'] = r'C:\oraclestuff\instantclient_11_2;%PATH%'
+# os.environ['ORACLE_HOME'] = r'C:\instantclient_11_2'
+# os.environ['PATH'] = r'C:\instantclient_11_2;%PATH%'
 
 TEMPLATES = [
     {

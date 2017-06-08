@@ -342,3 +342,9 @@ a.dropdown-toggle .glyphicon {
 #exception {
     margin-top: 0 !important;
 }
+
+#first_name_error,
+#birth_date_error {
+    color: #d75b32;
+    font-size: 0.8em;
+}
