@@ -85,7 +85,7 @@ $(document).ready(function() {
 
 function setSeen(notification_id, kid_id) {
     var saveData = $.ajax({
-        type: 'PUT',
+        type: 'PATCH',
         url: "/api/notification/" +  notification_id + "/",
         headers: myHeader,
         data: {"kid" : kid_id, "seen": true},
