@@ -66,7 +66,7 @@ function loginSession() {
     }).done(function (resultData) {
         window.location.href = '/account/profile';
     }).fail( function(resultData) {
-        window.location.href = '/account/profile?id=';
+        window.location.href = '/account/profile';
     });
 }
 

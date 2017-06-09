@@ -18,6 +18,36 @@
         </div>
     </div>
     <h2> At the moment, <span id="first-name"></span> is here: </h2>
+
+
+    <form class="form-inline">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-3">
+            <label class="sr-only" for="latitude">Latitude</label>
+            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="latitude" placeholder="Latitude">
+             <p id="latitude_error" class="error-msg"></p>
+            </div>
+
+            <div class="col-md-3">
+            <label class="sr-only" for="longitude">Longitude</label>
+            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="longitude" placeholder="Longitude">
+             <p id="longitude_error" class="error-msg"></p>
+            </div>
+
+
+            <div class="col-md-3">
+            <label class="sr-only" for="distance">Distance</label>
+            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="distance" placeholder="Distance (meters)">
+             <p id="distance_error" class="error-msg centered"></p>
+            </div>
+            <div class="col-md-3">
+             <a href="#" type="submit" class="btn btn-success" onclick="addRestriction()">Add Restriction</a>
+
+            </div>
+        </div>
+</form>
+
     <div id="map"></div>
 
     <h2> Recent activity: </h2>

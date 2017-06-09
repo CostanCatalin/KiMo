@@ -27,7 +27,7 @@ $(document).ready(function() {
 var getNotifications = function() {
     $.ajax({
         type: 'GET',
-        url: "/api/notification/",
+        url: "/api/notification/?seen=false?limit=3",
         headers: myHeader,
         dataType: "json"
     }).done( function(resultData) {

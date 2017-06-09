@@ -15,7 +15,8 @@
             var latitude = event.latLng.lat();
             var longitude = event.latLng.lng();
 
-
+            document.getElementById('latitude').value = latitude;
+            document.getElementById('longitude').value = longitude;
 
             //console.log(latitude + "  " + longitude);
             map.panTo(new google.maps.LatLng(latitude,longitude));
@@ -24,34 +25,6 @@
         getPosition(map);
   };
 
- function addMarker(location) {
-        var marker = new google.maps.Marker({
-          position: location,
-          map: map
-        });
-        markers.push(marker);
- }
- function setMapOnAll(map) {
-        for (var i = 0; i < markers.length; i++) {
-          markers[i].setMap(map);
-        }
-      }
-
-      // Removes the markers from the map, but keeps them in the array.
-      function clearMarkers() {
-        setMapOnAll(null);
-      }
-
-      // Shows any markers currently in the array.
-      function showMarkers() {
-        setMapOnAll(map);
-      }
-
-      // Deletes all markers in the array by removing references to them.
-      function deleteMarkers() {
-        clearMarkers();
-        markers = [];
-      }
 
 function getKidInfo() {
 $.ajax({
@@ -67,6 +40,7 @@ $.ajax({
          document.getElementById('birth-date').textContent = formatDate(birth_date);
          document.getElementById('age').textContent = getAge(birth_date);
     });
+    getActivity();
 }
 
 function getRestrictions(map) {
@@ -98,6 +72,26 @@ $.ajax({
     });
 }
 
+function addRestriction() {
+    $.ajax({
+        type: 'POST',
+        url: "/api/restriction/",
+        headers: myHeader,
+        data : {'kid' : kid_id, 'latitude' : $("#latitude").val(),'longitude' :$("#longitude").val(), distance : $("#distance").val()},
+        dataType: "json"
+    }).fail( function(resultData) {
+
+     document.getElementById('latitude_error').innerHTML = '';
+     document.getElementById('longitude_error').innerHTML = '';
+     document.getElementById('distance_error').innerHTML = '';
+
+     var listData = JSON.parse(resultData.responseText);
+     for (obj in listData) {
+             document.getElementById(obj + '_error').innerHTML = ('*' + listData[obj]);
+     }
+     });
+}
+
 function getPosition(map) {
  setInterval(function() {
 $.ajax({
@@ -125,6 +119,18 @@ $.ajax({
     }, 5000);
 
 }
+
+function getActivity() {
+    $.ajax({
+        type: 'GET',
+        url: "/api/notification/?limit=10",
+        headers: myHeader,
+        dataType: "json"
+    }).done( function(resultData) {
+          console.log(resultData.results);
+    });
+}
+
 
 function formatDate(date) {
     var month_names = new Array ( );
@@ -189,4 +195,31 @@ function setStreet(id, latitude, longitude) {
             document.getElementById(id).textContent = "Unknown street";
         }
     });
+}
+
+function addMarker(location) {
+   var marker = new google.maps.Marker({
+       position: location,
+       map: map
+   });
+   markers.push(marker);
+}
+
+function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+       markers[i].setMap(map);
+    }
+}
+
+function clearMarkers() {
+   setMapOnAll(null);
+}
+
+function showMarkers() {
+   setMapOnAll(map);
+}
+
+function deleteMarkers() {
+   clearMarkers();
+   markers = [];
 }
