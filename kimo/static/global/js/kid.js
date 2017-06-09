@@ -1,10 +1,12 @@
   var myHeader = { Authorization : "Token " + readCookie('token'), 'X-CSRFToken': readCookie("csrftoken")};
   var kid_id = window.location.pathname.split('/')[3];
+  var markers = [];
+  var map;
 
   function initMap() {
         var myLatLng = {lat: 42.2335399, lng: -88.33784799999999};
 
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
           zoom: 18,
           center: myLatLng
         });
@@ -13,18 +15,7 @@
             var latitude = event.latLng.lat();
             var longitude = event.latLng.lng();
 
-            radius = new google.maps.Circle({
-                map: map,
-                radius: 100,
-                center: event.latLng,
-                fillColor: '#777',
-                fillOpacity: 0.1,
-                strokeColor: '#AA0000',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                draggable: true,    // Dragable
-                editable: true      // Resizable
-            });
+
 
             //console.log(latitude + "  " + longitude);
             map.panTo(new google.maps.LatLng(latitude,longitude));
@@ -32,6 +23,35 @@
         getRestrictions(map);
         getPosition(map);
   };
+
+ function addMarker(location) {
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map
+        });
+        markers.push(marker);
+ }
+ function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+
+      // Removes the markers from the map, but keeps them in the array.
+      function clearMarkers() {
+        setMapOnAll(null);
+      }
+
+      // Shows any markers currently in the array.
+      function showMarkers() {
+        setMapOnAll(map);
+      }
+
+      // Deletes all markers in the array by removing references to them.
+      function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+      }
 
 function getKidInfo() {
 $.ajax({
@@ -90,11 +110,10 @@ $.ajax({
         if (resultData.count > 0) {
             var position = resultData.results[0];
             var posCoord = new google.maps.LatLng(position.latitude, position.longitude);
-            var marker = new google.maps.Marker({
-              position: posCoord,
-              map: map,
-              title: document.getElementById('first-name').textContent + "'s Here!"
-            });
+            deleteMarkers();
+
+            addMarker(posCoord);
+            showMarkers();
             map.panTo(posCoord);
             setStreet("child-pos", position.latitude, position.longitude);
         } else {
