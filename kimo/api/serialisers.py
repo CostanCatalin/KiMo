@@ -88,11 +88,12 @@ class KidSerializer(serializers.HyperlinkedModelSerializer):
 class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
-        fields = ('id', 'kid', 'text', 'seen', 'date_created')
+        fields = ('id', 'kid', 'text', 'seen', 'date_created', 'type')
         extra_kwargs = {
             'kid': {'required': True},
             'text': {'required': True},
             'seen': {'required': False},
+            'type': {'required': True},
             'date_created': {'read_only': True}
         }
 
@@ -105,13 +106,12 @@ class NotificationSerializer(serializers.ModelSerializer):
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
-        fields = ('id', 'kid', 'latitude', 'longitude', 'date_created', 'type')
+        fields = ('id', 'kid', 'latitude', 'longitude', 'date_created')
         extra_kwargs = {
             'kid': {'required': True},
             'latitude': {'required': True},
             'longitude': {'required': True},
             'date_created': {'read_only': True},
-            'type': {'required': True}
         }
 
     def validate_kid(self, kid):
