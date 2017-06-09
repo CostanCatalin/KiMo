@@ -15,7 +15,7 @@ function getNotifications() {
 
 var saveData = $.ajax({
         type: 'GET',
-        url: "http://127.0.0.1:8000/api/notification/",
+        url: "/api/notification/",
         headers: myHeader,
         dataType: "json"
     }).done( function(resultData) {
@@ -23,7 +23,6 @@ var saveData = $.ajax({
            if (resultData.count < 3) {
                numberOfValues = resultData.count;
            }
-           console.log(Math.round(((new Date()).getTime() - new Date(resultData["results"][0].date_created).getTime()) / 3600000));
            document.getElementById("notification-circle").textContent = numberOfValues;
 
            for ( i = 0; i < numberOfValues; i++) {

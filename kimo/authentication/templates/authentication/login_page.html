@@ -4,24 +4,32 @@
 {% block body_extra %} class="forms-body" {% endblock %}
 {% block content %}
 
-<script type="text/javascript" src="{% static 'global/js/auth.js' %}"></script>
-
 <h2 class="form-header"><img src="/static/global/img/logo.png" alt="Logo"></h2>
+
 <form class="auth-forms">
     {% csrf_token %}
     <div class="form-group">
         <label for="id_username">Username</label>
         <input type="text" id="id_username" name="username" class="form-control">
+         <p id="username_error"  class="error-msg"></p>
     </div>
+
     <div class="form-group">
         <label for="id_password">Password</label>
         <input type="password" id="id_password" name="password" class="form-control">
+        <p id="password_error"  class="error-msg"></p>
     </div>
-    <div class="row">
-        <p class="col-xs-6">Don't have an account? Register <a href="{% url 'register' %}">here</a></p>
-        <div class="col-xs-3 col-xs-offset-3">
-            <button type="submit" class="btn btn-success btn" id="login-submit" onclick="login()">Login</button>
+
+
+    <p id="non_field_errors_error"  class="error-msg"></p>
+
+
+        <div class="row">
+
+            <p class="col-xs-6">Don't have an account? Register <a href="{% url 'register' %}">here</a></p>
+            <div class="col-xs-4 col-xs-offset-2" id="login-submit-wrapper">
+                <a href="#" type="submit" class="btn btn-success btn" id="login-submit" onclick="login()"> Login </a>
+            </div>
         </div>
-    </div>
 </form>
 {% endblock %}

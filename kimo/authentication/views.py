@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -8,6 +9,8 @@ from .models import Account
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect("/account/profile/")
     return render(request, "authentication/login_page.html")
 
 
@@ -18,7 +21,7 @@ def register_view(request):
 def logout_view(request):
     return redirect("/account/login/")
 
-
+@login_required()
 def profile(request):
     return render(request, 'authentication/profile.html')
 
