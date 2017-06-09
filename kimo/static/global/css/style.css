@@ -28,6 +28,7 @@ body {
 
 .auth-forms {
     width: 40%;
+    min-width: 300px;
     margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 15px;
@@ -82,6 +83,12 @@ input[type="date"]:focus {
         opacity: 1;
     }
 }
+
+#login-submit {
+    display: block;
+    width: 100%;
+}
+
 
 /* ==========================================================================
    Menu styles
@@ -343,8 +350,7 @@ a.dropdown-toggle .glyphicon {
     margin-top: 0 !important;
 }
 
-#first_name_error,
-#birth_date_error {
+.error-msg {
     color: #d75b32;
     font-size: 0.8em;
 }

@@ -26,7 +26,7 @@ function getProfile() {
 
 var saveData = $.ajax({
         type: 'GET',
-        url: "http://127.0.0.1:8000/api/user/1/",
+        url: "/api/user/1/",
         headers: myHeader,
         dataType: "json"
     }).done( function(resultData) {
@@ -38,12 +38,12 @@ var saveData = $.ajax({
 }
 
 function getKids() {
-var myHeader = { Authorization : "Token " + /*readCookie('token')*/"10ab2299cca18b7eee3783e99a1832466e6b8c5c"};
+var myHeader = { Authorization : "Token " + readCookie('token')};
 
 var saveData = $.ajax({
 
     type: 'GET',
-    url: "http://127.0.0.1:8000/api/kid",
+    url: "/api/kid",
     headers: myHeader,
     dataType: "json"
     }).done( function(resultData) {
@@ -85,7 +85,7 @@ var saveData = $.ajax({
                     kid_map[kid_id] = i;
                     $.ajax({
                         type: 'GET',
-                        url: "http://127.0.0.1:8000/api/location",
+                        url: "/api/location",
                         headers: myHeader,
                         data: {'kid' : kid_id, 'limit' : 1},
                         dataType: "json"
@@ -99,7 +99,6 @@ var saveData = $.ajax({
 };
 
 function googleCall(resultData, kid_map) {
-    console.log(kid_map);
     var kid_id = resultData["results"][0].kid;
     $.ajax({
         type: 'GET',
@@ -108,7 +107,6 @@ function googleCall(resultData, kid_map) {
         dataType: "json"
     }).done(function(data) {
                 var address = data['results'][0];
-                //console.log(address);
                 if (address != null) {
                      document.getElementById('location' + kid_map[kid_id]).innerHTML = address.formatted_address;
                 } else {
@@ -125,7 +123,7 @@ function deleteChild(id) {
         var saveData = $.ajax({
 
         type: 'DELETE',
-        url: "http://127.0.0.1:8000/api/kid/" + id,
+        url: "/api/kid/" + id,
         headers: myHeader,
         dataType: "json"
         });
@@ -137,7 +135,7 @@ function addChild() {
 
         var saveData = $.ajax({
         type: 'POST',
-        url: "http://127.0.0.1:8000/api/kid/",
+        url: "/api/kid/",
         headers: myHeader,
         data: {'first_name' : $("#id_first_name").val(), 'birth_date' : $("#id_birth_date").val() },
         dataType: "json"
