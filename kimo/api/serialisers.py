@@ -88,12 +88,12 @@ class KidSerializer(serializers.HyperlinkedModelSerializer):
 class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
-        fields = ('id', 'kid', 'text', 'seen', 'date_created', 'type')
+        fields = ('id', 'kid', 'text', 'seen', 'date_created', 'notification_type')
         extra_kwargs = {
             'kid': {'required': True},
             'text': {'required': True},
             'seen': {'required': False},
-            'type': {'required': True},
+            'notification_type': {'required': True},
             'date_created': {'read_only': True}
         }
 
