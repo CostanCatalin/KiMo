@@ -11,9 +11,21 @@ function readCookie(name) {
     return null;
 }
 
-function getNotifications() {
+$(document).ready(function() {
+    $(document).on("click", "#notifications li a", function (event){
+         event.preventDefault();
 
-var saveData = $.ajax({
+         var addressValue = $(this).attr("href");
+         var kid_id = addressValue.split("/")[3];
+         var notification_id = addressValue.split("/")[4];
+
+          setSeen(notification_id, kid_id);
+          window.location.href = "/kids/view/" + kid_id + "/";
+         return false;
+    });
+
+var getNotifications = function() {
+    $.ajax({
         type: 'GET',
         url: "/api/notification/",
         headers: myHeader,
@@ -24,6 +36,7 @@ var saveData = $.ajax({
                numberOfValues = resultData.count;
            }
            document.getElementById("notification-circle").textContent = numberOfValues;
+           document.getElementById("notifications").innerHTML = `<li class="notification-header"> Notifications </li>`;
 
            for ( i = 0; i < numberOfValues; i++) {
 
@@ -59,7 +72,7 @@ var saveData = $.ajax({
                    document.getElementById('notifications').insertAdjacentHTML('beforeend', `
                         <li>
                             <span><i class="glyphicon glyphicon-exclamation-sign"></i>
-                                <a href="` + resultData["results"][i].kid + "/"+ resultData["results"][i].id +`"> ` + resultData["results"][i].text + `</a><br>
+                                <a href="/account/profile/` + resultData["results"][i].kid + "/"+ resultData["results"][i].id +`"> ` + resultData["results"][i].text + `</a><br>
                                  <small>` + daysText + hourText + ` ago</small>
                             </span>
 
@@ -68,19 +81,9 @@ var saveData = $.ajax({
                    );
            }
     });
-}
-
-$(document).ready(function() {
-    $('#notifications li a').click(function (event){
-         event.preventDefault();
-
-         var addressValue = $(this).attr("href");
-         var kid_id = addressValue.split("/")[0];
-         var notification_id = addressValue.split("/")[1];
-          setSeen(notification_id, kid_id);
-          window.location.href = "/kids/view/" + kid_id + "/";
-         return false;
-    });
+    };
+    getNotifications();
+    setInterval(getNotifications, 5000);
 });
 
 function setSeen(notification_id, kid_id) {

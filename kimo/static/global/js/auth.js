@@ -24,7 +24,7 @@ function login() {
 $(document).ready(function() {
     $('#id_password, #id_password2').on('keyup', function () {
       if ($('#id_password').val() == $('#id_password2').val()) {
-        $('#password2_error').html('Matching').css('color', 'green');
+        $('#password2_error').html('Matching').css('color', '#449d44');
       } else
         $('#password2_error').html('* Not Matching').css('color', '#d75b32');
     });
@@ -40,8 +40,7 @@ function register() {
                 'email' : $("#id_email").val()},
         dataType: "json"
         }).done( function(resultData) {
-                console.log(resultData);
-
+                window.location.href = '/account/login/';
         }).fail( function(resultData) {
               document.getElementById('username_error').innerHTML = '';
               document.getElementById('password_error').innerHTML = '';

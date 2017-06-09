@@ -26,7 +26,7 @@ function getProfile() {
 
 var saveData = $.ajax({
         type: 'GET',
-        url: "/api/user/1/",
+        url: "/api/user/current",
         headers: myHeader,
         dataType: "json"
     }).done( function(resultData) {

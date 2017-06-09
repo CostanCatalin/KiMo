@@ -26,7 +26,7 @@
                 editable: true      // Resizable
             });
 
-            // Center of map
+            //console.log(latitude + "  " + longitude);
             map.panTo(new google.maps.LatLng(latitude,longitude));
         });
         getRestrictions(map);
@@ -79,6 +79,7 @@ $.ajax({
 }
 
 function getPosition(map) {
+ setInterval(function() {
 $.ajax({
         type: 'GET',
         url: "/api/location?kid=" + kid_id + "&limit=1",
@@ -101,7 +102,9 @@ $.ajax({
             document.getElementById("child-pos").textContent = "Unknown location";
             alert("Kid is nowhere to be found");
         }
-    });
+    })
+    }, 5000);
+
 }
 
 function formatDate(date) {
