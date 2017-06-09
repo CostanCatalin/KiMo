@@ -145,6 +145,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'authentication.Account'
 LOGIN_URL = '/account/login/'
+LOGIN_REDIRECT_URL = '/account/profile/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 # CRISPY_TEMPLATE_PACK = 'uni_form'
 DEFAULT_CHARSET = 'utf-8'
