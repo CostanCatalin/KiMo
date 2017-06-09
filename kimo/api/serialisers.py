@@ -89,6 +89,14 @@ class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
         fields = ('id', 'kid', 'text', 'seen', 'date_created')
+        extra_kwargs = {
+            'kid': {'write_only': True,
+                    'required': True
+                    },
+            'text': {'required': True},
+            'seen': {'required': False},
+            'date_created': {'read_only': True}
+        }
 
     def validate_kid(self, kid):
         if kid.parent != self.context['request'].user and not self.context['request'].user.is_superuser:
@@ -100,6 +108,13 @@ class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
         fields = ('id', 'kid', 'latitude', 'longitude', 'date_created')
+        extra_kwargs = {
+            'kid': {'write_only': True,
+                    'required': True},
+            'latitude': {'required': True},
+            'longitude': {'required': True},
+            'date_created': {'read_only': True}
+        }
 
     def validate_kid(self, kid):
         if kid.parent != self.context['request'].user and not self.context['request'].user.is_superuser:
@@ -111,6 +126,15 @@ class RestrictionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restriction
         fields = ('id', 'kid', 'latitude', 'longitude', 'distance', 'date_created')
+        extra_kwargs = {
+            'kid': {'write_only': True,
+                    'required': True,
+                    },
+            'latitude': {'required': True},
+            'longitude': {'required': True},
+            'distance': {'required': True},
+            'date_created': {'read_only': True}
+        }
 
     def validate_kid(self, kid):
         if kid.parent != self.context['request'].user and not self.context['request'].user.is_superuser:

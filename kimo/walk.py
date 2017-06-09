@@ -118,7 +118,7 @@ class Kid(object):
             lat, long = self.move(lat, long)
             self.send_location(lat, long)
             print('Walked to: ({}, {})'.format(lat, long))
-            time.sleep(1)
+            time.sleep(3)
 
 
 if __name__ == '__main__':
