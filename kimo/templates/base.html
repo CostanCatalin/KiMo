@@ -46,7 +46,7 @@
 
                     </li>
                     {% if user.is_authenticated %}
-                <li><a href="#" onclick="logout()"><span class="glyphicon glyphicon-log-in">&nbsp;</span>Logout - {{ user.username }}</a></li>
+                <li><a href="#" onclick="logout()"><span class="glyphicon glyphicon-log-in">&nbsp;</span>Logout - {{ user.first_name }}</a></li>
                 {% else %}
                 <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Login</a></li>
                 {% endif %}

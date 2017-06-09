@@ -145,6 +145,10 @@ nav li a.active:after {
     font-weight: bold;
 }
 
+#notification-circle:empty {
+   display: none;
+}
+
 a.navbar-brand {
     padding: 10px;
 }

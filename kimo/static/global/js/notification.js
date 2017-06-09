@@ -59,11 +59,36 @@ var saveData = $.ajax({
                    document.getElementById('notifications').insertAdjacentHTML('beforeend', `
                         <li>
                             <span><i class="glyphicon glyphicon-exclamation-sign"></i>
-                                ` + resultData["results"][i].text + `<br><small>` + daysText + hourText + ` ago</small>
+                                <a href="` + resultData["results"][i].kid + "/"+ resultData["results"][i].id +`"> ` + resultData["results"][i].text + `</a><br>
+                                 <small>` + daysText + hourText + ` ago</small>
                             </span>
+
+                             <p id="" hidden></p>
                         </li>`
                    );
            }
     });
 }
 
+$(document).ready(function() {
+    $('#notifications li a').click(function (event){
+         event.preventDefault();
+
+         var addressValue = $(this).attr("href");
+         var kid_id = addressValue.split("/")[0];
+         var notification_id = addressValue.split("/")[1];
+          setSeen(notification_id, kid_id);
+          window.location.href = "/kids/view/" + kid_id + "/";
+         return false;
+    });
+});
+
+function setSeen(notification_id, kid_id) {
+    var saveData = $.ajax({
+        type: 'PUT',
+        url: "/api/notification/" +  notification_id + "/",
+        headers: myHeader,
+        data: {"kid" : kid_id, "seen": true},
+        dataType: "json"
+    });
+}
