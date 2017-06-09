@@ -3,6 +3,7 @@
 {%block title %}Login{% endblock %}
 
 {% block content %}
+ <script src="{% static 'global/js/kid.js' %}"></script>
 <div class="baby-profile">
     <div class="row">
         <img class="col-xs-6 profile-picture" src="{% static 'global/img/baby_picture.jpeg' %}" alt="profile picture">
@@ -80,23 +81,6 @@
 </div>
 
 
-<script>
-  var map;
-  function initMap() {
-    var myLatLng = {lat: 42.2335399, lng: -88.33784799999999};
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 18,
-      center: myLatLng
-    });
-
-    var marker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-      title: "Amber's Here!"
-    });
-  };
-</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9sVt_9-coQ5PNimOKNg4332NTZVaBEFI&callback=initMap"
 async defer></script>
 </div>
