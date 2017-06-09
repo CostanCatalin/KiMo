@@ -105,12 +105,13 @@ class NotificationSerializer(serializers.ModelSerializer):
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
-        fields = ('id', 'kid', 'latitude', 'longitude', 'date_created')
+        fields = ('id', 'kid', 'latitude', 'longitude', 'date_created', 'type')
         extra_kwargs = {
             'kid': {'required': True},
             'latitude': {'required': True},
             'longitude': {'required': True},
-            'date_created': {'read_only': True}
+            'date_created': {'read_only': True},
+            'type': {'required': True}
         }
 
     def validate_kid(self, kid):
