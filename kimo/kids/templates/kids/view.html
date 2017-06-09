@@ -4,19 +4,20 @@
 
 {% block content %}
  <script src="{% static 'global/js/kid.js' %}"></script>
+ <script> getKidInfo() </script>
 <div class="baby-profile">
     <div class="row">
         <img class="col-xs-6 profile-picture" src="{% static 'global/img/baby_picture.jpeg' %}" alt="profile picture">
 
         <div class="col-xs-6">
             <div class="user-details">
-                <h1>Amber Usernamovski</h1>
-                <p><span class="glyphicon glyphicon-calendar"></span> 1 May 2015 <small>(2 years old)</small></p>
+                <h1 id="kid-name"></h1>
+                <p><span class="glyphicon glyphicon-calendar"></span><span id="birth-date"></span> <small id="age">(2 years old)</small></p>
                   <p><span class="glyphicon glyphicon-map-marker"></span> 189 Logan St.Crystal Lake, IL 60014</p>
             </div>
         </div>
     </div>
-    <h2> At the moment Amber is here: </h2>
+    <h2> At the moment, <span id="first-name"></span> is here: </h2>
     <div id="map"></div>
 
     <h2> Recent activity: </h2>
