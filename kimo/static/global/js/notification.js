@@ -28,16 +28,38 @@ var saveData = $.ajax({
            for ( i = 0; i < numberOfValues; i++) {
 
                    var hours = Math.round(((new Date()).getTime() - new Date(resultData["results"][i].date_created).getTime()) / 3600000);
-                   var hourText = "hour";
-                   if (hours > 1) {
-                       hourText = "hours";
+                   var hourText = "";
+                   var daysText = "";
+                   var days = 0;
+
+                   if (hours >= 24) {
+                       days = Math.floor(hours / 24);
+                       hours = Math.ceil(hours % 24);
+                       if (days > 1) {
+                           daysText += days + " days"
+                       } else {
+                           daysText += days + " day"
+                       }
+
+                       if (hours > 0) {
+                            hourText = " and " + hours;
+                            if (hours > 1) {
+                             hourText += " hours";
+                            } else {
+                             hourText += " hour ";
+                            }
+                       }
                    } else {
-                       hours = "< 1"
+                       if (hours > 1) {
+                           hourText = hours + " hours";
+                       } else {
+                           hours = "< 1 hour"
+                       }
                    }
                    document.getElementById('notifications').insertAdjacentHTML('beforeend', `
                         <li>
                             <span><i class="glyphicon glyphicon-exclamation-sign"></i>
-                                ` + resultData["results"][i].text + `<br><small>` + hours + " " + hourText + ` ago</small>
+                                ` + resultData["results"][i].text + `<br><small>` + daysText + hourText + ` ago</small>
                             </span>
                         </li>`
                    );

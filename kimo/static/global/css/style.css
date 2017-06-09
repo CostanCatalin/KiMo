@@ -350,7 +350,7 @@ a.dropdown-toggle .glyphicon {
     margin-top: 0 !important;
 }
 
-.error-msg {
+p.error-msg {
     color: #d75b32;
     font-size: 0.8em;
 }
