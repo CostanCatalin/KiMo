@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from kids.models import Kid, Notification, Location, Encounter, Restriction
+from datetime import date
 
 Account = get_user_model()
 
@@ -66,6 +67,11 @@ class KidSerializer(serializers.HyperlinkedModelSerializer):
             'last_name': {'read_only': True},
             'registered_date': {'read_only': True}
         }
+
+    def validate_birth_date(self, birth_date):
+        if birth_date > date.today():
+            raise serializers.ValidationError("Is your kid born into the future?")
+        return birth_date
 
     def create(self, validated_data):
         parent = self.context['request'].user

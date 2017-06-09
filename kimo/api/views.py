@@ -94,8 +94,24 @@ class RestrictionAPIViewSet(ModelViewSet):
     serializer_class = RestrictionSerializer
     permission_classes = [IsAuthenticated, IsMyKid]
 
-    def get_queryset(self):
+    def get_queryset(self, *args, **kwargs):
         queryset = Restriction.objects.filter(kid__parent=self.request.user).order_by('-date_created')
+        kid = self.request.GET.get('kid')
+        limit = self.request.GET.get('limit')
+        if type(limit) is not int:
+            try:
+                limit = int(limit)
+            except ValueError:
+                limit = None
+            except TypeError:
+                pass
+
+        if kid:
+            queryset = queryset.filter(
+                Q(kid=kid)
+            )
+        if limit:
+            queryset = queryset[:limit]
         return queryset
 
 
