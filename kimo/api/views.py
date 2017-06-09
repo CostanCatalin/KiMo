@@ -44,8 +44,6 @@ class UserDetailAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsSelf]
 
 
-
-
 class KidAPIViewSet(ModelViewSet):
     serializer_class = KidSerializer
     permission_classes = [IsAuthenticated, IsOwner]
@@ -67,10 +65,14 @@ class NotificationAPIViewSet(ModelViewSet):
     def get_queryset(self, *args, **kwargs):
         queryset = Notification.objects.filter(kid__parent=self.request.user).order_by('-date_created')
         query = self.request.GET.get('kid')
+        seen = self.request.GET.get('seen')
         if query:
             queryset = queryset.filter(
                 Q(kid=query)
             )
+        if seen:
+            seen = True if seen.lower() == 'true' else False
+            queryset = queryset.filter(Q(seen=seen))
         return queryset
 
 
