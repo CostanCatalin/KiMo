@@ -5,6 +5,7 @@ from rest_framework.authtoken import views
 from .views import (
     UserDetailAPIView,
     UserListCreateAPIView,
+    current_user,
     KidAPIViewSet,
     NotificationAPIViewSet,
     LocationAPIViewSet,
@@ -19,6 +20,7 @@ router.register('restriction', RestrictionAPIViewSet, base_name='restriction')
 urlpatterns = router.urls
 urlpatterns += [
     url('^user/$', UserListCreateAPIView.as_view(), name='account-list'),
+    url('^user/current$', current_user, name='current-user'),
     url('^user/(?P<pk>[\d]+)/$', UserDetailAPIView.as_view(), name='account-detail'),
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^token-auth/', views.obtain_auth_token)

@@ -1,5 +1,6 @@
 from authentication.models import Account
 from kids.models import Kid, Location, Notification, Encounter, Restriction
+from rest_framework.decorators import api_view, permission_classes
 from django.db.models import Q
 
 from .serialisers import (
@@ -24,6 +25,13 @@ from rest_framework.response import Response
 from .permissions import IsOwner, IsSelf, IsMyKid
 
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def current_user(request):
+    serializer = UserDetailSerializer(request.user)
+    return Response(serializer.data)
+
+
 class UserListCreateAPIView(ListCreateAPIView):
     queryset = Account.objects.all()
     serializer_class = UserCreateSerializer
@@ -34,6 +42,8 @@ class UserDetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Account.objects.all()
     serializer_class = UserDetailSerializer
     permission_classes = [IsSelf]
+
+
 
 
 class KidAPIViewSet(ModelViewSet):
