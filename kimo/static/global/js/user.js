@@ -1,4 +1,3 @@
-createCookie("token", "10ab2299cca18b7eee3783e99a1832466e6b8c5c", 2038);
 var myHeader = { Authorization : "Token " + readCookie('token'), 'X-CSRFToken': readCookie("csrftoken")};
 
 function createCookie(name, value, days) {
@@ -47,7 +46,6 @@ var saveData = $.ajax({
     headers: myHeader,
     dataType: "json"
     }).done( function(resultData) {
-
             for (i = 1; i <= resultData['results'].length; i++) {
                     var expanded = '';
                     if (i == 1) { expanded = 'in';}
