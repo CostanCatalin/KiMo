@@ -4,7 +4,7 @@
   var map;
 
   function initMap() {
-        var myLatLng = {lat: 42.2335399, lng: -88.33784799999999};
+        var myLatLng = {lat: 47.17382476066459, lng: 27.575187251004536};
 
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 18,
@@ -21,7 +21,7 @@
             //console.log(latitude + "  " + longitude);
             map.panTo(new google.maps.LatLng(latitude,longitude));
         });
-        getRestrictions(map);
+        getRestrictions();
         getPosition(map);
   };
 
@@ -43,7 +43,7 @@ $.ajax({
     getActivity();
 }
 
-function getRestrictions(map) {
+function getRestrictions() {
 $.ajax({
         type: 'GET',
         url: "/api/restriction/?kid=" + kid_id,
@@ -79,16 +79,18 @@ function addRestriction() {
         headers: myHeader,
         data : {'kid' : kid_id, 'latitude' : $("#latitude").val(),'longitude' :$("#longitude").val(), distance : $("#distance").val()},
         dataType: "json"
+    }).done( function(resultData) {
+         getRestrictions();
+         document.getElementById('distance').value = '';
     }).fail( function(resultData) {
+         document.getElementById('latitude_error').innerHTML = '';
+         document.getElementById('longitude_error').innerHTML = '';
+         document.getElementById('distance_error').innerHTML = '';
 
-     document.getElementById('latitude_error').innerHTML = '';
-     document.getElementById('longitude_error').innerHTML = '';
-     document.getElementById('distance_error').innerHTML = '';
-
-     var listData = JSON.parse(resultData.responseText);
-     for (obj in listData) {
-             document.getElementById(obj + '_error').innerHTML = ('*' + listData[obj]);
-     }
+         var listData = JSON.parse(resultData.responseText);
+         for (obj in listData) {
+                 document.getElementById(obj + '_error').innerHTML = ('*' + listData[obj]);
+         }
      });
 }
 
@@ -127,7 +129,49 @@ function getActivity() {
         headers: myHeader,
         dataType: "json"
     }).done( function(resultData) {
-          console.log(resultData.results);
+          for (i = 0; i < resultData['results'].length; i++) {
+
+                var notificationHeader = '';
+                switch(resultData['results'][i].notification_type) {
+                case 'encounter':
+                    notificationHeader = "Encountered someone";
+                    break;
+                case 'out_of_bounds':
+                    notificationHeader = "Out of any allowed area";
+                    break;
+                case 'collision':
+                    notificationHeader = "Had an accident";
+                    break;
+                default :
+                    notificationHeader = "Unknown notification type";
+                }
+
+                var expanded = '';
+                var date = new Date(resultData.results[i].date_created);
+                var pad = "00";
+
+                if (i == 0) { expanded = 'in';}
+                     document.getElementById('accordion').insertAdjacentHTML('beforeend', `
+                       <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading`+ 1 +`">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse`+ i +`" aria-expanded="true" aria-controls="collapse`+ i +`">
+                                    ` + notificationHeader + `
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse`+ i +`" class="panel-collapse collapse `+ expanded +`" role="tabpanel" aria-labelledby="heading`+ i +`">
+                                <div class="panel-body">
+
+                                    <h3>` + resultData.results[i].text + `</h3>
+                                    <p><span class="glyphicon glyphicon-calendar"></span>` + formatDate( new Date(resultData.results[i].date_created)) + `</p>
+                                    <p><span class="glyphicon glyphicon-time"></span>` +  pad.substring(0, 2 - (date.getHours() + '').length) + date.getHours() +
+                                     `:` + pad.substring(0, 2 - (date.getMinutes() + '').length) + date.getMinutes() + `</p>
+                                </div>
+                            </div>
+                        </div>
+                     `);
+          }
     });
 }
 
