@@ -125,7 +125,7 @@ $.ajax({
 function getActivity() {
     $.ajax({
         type: 'GET',
-        url: "/api/notification/?limit=10",
+        url: "/api/notification/?limit=10&kid=" + kid_id,
         headers: myHeader,
         dataType: "json"
     }).done( function(resultData) {
