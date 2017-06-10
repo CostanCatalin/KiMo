@@ -35,7 +35,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ('id', 'username', 'password', 'email', 'first_name', 'last_name')
+        fields = ('id', 'username', 'password', 'email', 'first_name', 'last_name', 'phone_number', 'birth_date')
         extra_kwargs = {
             'password': {'write_only': True,
                          'required': False,
@@ -44,7 +44,9 @@ class UserDetailSerializer(serializers.ModelSerializer):
             'username': {'read_only': True},
             'email': {'read_only': True},
             'first_name': {'required': False},
-            'last_name': {'required': False}
+            'last_name': {'required': False},
+            'phone_number': {'required': False},
+            'birth_date': {'required': False}
         }
 
     def update(self, instance, validated_data):

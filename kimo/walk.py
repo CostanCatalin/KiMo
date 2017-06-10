@@ -103,7 +103,7 @@ class Kid(object):
         self.weather_link = 'http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&units=meters'
         self.kid_url = 'http://127.0.0.1/api/kid/{}'.format(self.id)
         self.name = self.check_kid_resource()
-        self.out_of_bounds = False
+        self.out_of_bounds = True
 
     @retry(print)
     def check_kid_resource(self):
@@ -141,7 +141,7 @@ class Kid(object):
         data = {
             'kid': self.id,
             'text': message,
-            'type': _type
+            'notification_type': _type
         }
         r = requests.post(self.notification_url, data=data, headers=headers)
         return r.json()
@@ -185,11 +185,13 @@ class Kid(object):
             print('Walked to: ({}, {})'.format(lat, long))
             out_of_bounds = self.out_of_bounds
             self.check_out_of_bounds(lat, long)
+            print(out_of_bounds, self.out_of_bounds)
             if self.out_of_bounds and not out_of_bounds:
-                self.send_notification(generate_out_of_bounds(self.name), 'out_of_bounds')
+                print(self.send_notification(generate_out_of_bounds(self.name), 'out_of_bounds'))
             collision = random.random()
             if collision <= 0.001:
-                self.send_notification(generate_collision(self.name), 'collision')
+                print(self.send_notification(generate_collision(self.name), 'collision'))
+
             time.sleep(3)
 
 
