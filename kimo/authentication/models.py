@@ -32,6 +32,8 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
+    birth_date = models.DateField(null=True)
+    phone_number = models.CharField(max_length=30, null=True)
 
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -53,19 +55,6 @@ class Account(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.first_name
 
-
-class AccountProfile(models.Model):
-    user = models.OneToOneField(Account)
-    birth_date = models.DateField(null=True)
-    phone_number = models.CharField(max_length=40, null=True)
-    country = models.CharField(max_length=40, null=True)
-    region = models.CharField(max_length=40, null=True)
-    street_name = models.CharField(max_length=40, null=True)
-    street_number = models.IntegerField(null=True)
-    kids = models.IntegerField(default=0)
-
-    def __unicode__(self):
-        return u'<' + self.user.email + u' Profile>'
 
 
 
