@@ -89,8 +89,8 @@ return float is
  y2 float;
  PRAGMA AUTONOMOUS_TRANSACTION;
 begin
-    select x, y into x2, y2 from
-      (select x, y from kids_location where kid_id = p_kid_id order by date_created desc)
+    select latitude, longitude into x2, y2 from
+      (select latitude, longitude from kids_location where kid_id = p_kid_id order by date_created desc)
         where rownum = 1;
     
     return getDistance(p_x, p_y, x2, y2);
@@ -114,10 +114,10 @@ begin
     if (v_distance <= distance and v_distance >= 0) then
       begin  
 
-            select x, y into v_last_x1, v_last_y1 from (Select x, y, rownum as rn from(Select * from kids_location k where k.kid_id = p_kid_id order by k.date_created desc))
+            select latitude, longitude into v_last_x1, v_last_y1 from (Select latitude, longitude, rownum as rn from(Select * from kids_location k where k.kid_id = p_kid_id order by k.date_created desc))
             where rn=1;
 
-            select x, y into v_last_x2, v_last_y2 from (Select x, y, rownum as rn from(Select * from kids_location k where k.kid_id = i.id order by k.date_created desc))
+            select latitude, longitude into v_last_x2, v_last_y2 from (Select latitude, longitude, rownum as rn from(Select * from kids_location k where k.kid_id = i.id order by k.date_created desc))
             where rn=2;    
 
             if ((getDistance(v_last_x1, v_last_y1, v_last_x2, v_last_y2) > distance))  then  

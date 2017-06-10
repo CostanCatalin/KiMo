@@ -111,7 +111,7 @@ for each row
 DECLARE
   pragma autonomous_transaction;
 BEGIN
-  children_functions.checkNeighbours(:NEW.kid_id, 10, :NEW.x, :NEW.y);
+  children_functions.checkNeighbours(:NEW.kid_id, 10, :NEW.latitude, :NEW.longitude);
 END;
 /
 
