@@ -54,8 +54,14 @@ class UserDetailSerializer(serializers.ModelSerializer):
         instance.last_name = validated_data['last_name'] if validated_data['last_name'] else instance.last_name
         if 'password' in validated_data:
             instance.set_password(validated_data['password'])
+        instance.birth_date = validated_data['birth_date'] if validated_data['birth_date'] else instance.birth_date
+        instance.phone_number = validated_data['phone_number'] if validated_data['phone_number'] else instance.phone_number
         instance.save()
         return instance
+
+    def validate_birth_date(self, birth_date):
+        if birth_date > date.today():
+            raise serializers.ValidationError("You cannot be born tomorrow!")
 
 
 class KidSerializer(serializers.HyperlinkedModelSerializer):
