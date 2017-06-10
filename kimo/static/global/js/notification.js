@@ -66,7 +66,7 @@ var getNotifications = function() {
                        if (hours > 1) {
                            hourText = hours + " hours";
                        } else {
-                           hours = "< 1 hour"
+                           hourText = "< 1 hour"
                        }
                    }
                    document.getElementById('notifications').insertAdjacentHTML('beforeend', `
