@@ -62,6 +62,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
     def validate_birth_date(self, birth_date):
         if birth_date > date.today():
             raise serializers.ValidationError("You cannot be born tomorrow!")
+        return birth_date
 
 
 class KidSerializer(serializers.HyperlinkedModelSerializer):
