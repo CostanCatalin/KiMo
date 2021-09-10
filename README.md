@@ -1,8 +1,7 @@
 # KiMo - Kid Monitor
-Our web technologies courses's project.
+Web technologies courses's project - Mock real-time tracking & notification web app for parents.
 
-
-It's a web application that lets you add children and, through sensors, get the geolocation and notifications on their behaviour.
+You can manage your children through sensors, get their geolocation and be notified on their behaviour.
 
 ### Motivation
 
